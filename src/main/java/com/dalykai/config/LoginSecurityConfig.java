@@ -22,7 +22,7 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-
+//
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -49,6 +49,7 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 ///http.csrf().disable(). is added so that i could test post/put/delete with postman. otherwise i get a 403
 
 		http.csrf().disable().authorizeRequests()
+				.antMatchers("/api/**").authenticated()
                 .antMatchers("/leaders/**").hasRole("MANAGER")
                 .antMatchers("/admins/**").hasRole("ADMIN")
                 .antMatchers("/").hasRole("EMPLOYEE")
